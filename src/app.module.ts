@@ -9,6 +9,7 @@ import { VehicleModule } from './vehicle/vehicle.module';
 import { Employee } from './employee/entities/employee.entity';
 import { Department } from './department/entities/department.entity';
 import { Salary } from './salary/entities/salary.entity';
+import { Vehicle } from './vehicle/entities/vehicle.entity';
 
 @Module({
   imports: [
@@ -17,15 +18,15 @@ import { Salary } from './salary/entities/salary.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'example',
-      database: 'nestjs_typeorm',
-      entities: [Employee, Department, Salary], //adding entites
-      synchronize: true,
+      password: 'Finstable',
+      database: 'Findstable_db',
+      entities: [ Department], //adding entites Employee, Salary, Vehicle
+      synchronize: false,
     }),
     DepartmentModule,
-    EmployeeModule,
-    SalaryModule,
-    VehicleModule, //adding entites
+    // EmployeeModule,
+    // SalaryModule,
+    // VehicleModule, //adding entites
   ], //import moduule
   controllers: [AppController],
   providers: [AppService],
