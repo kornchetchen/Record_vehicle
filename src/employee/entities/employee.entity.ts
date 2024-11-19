@@ -47,4 +47,5 @@ export class Employee {
 
   @Column({ type: 'timestamp', nullable: true })
   deleted_by: Date;
+    vehicles: any;
 }
