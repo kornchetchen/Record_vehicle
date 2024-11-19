@@ -2,6 +2,13 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DepartmentModule } from './department/department.module';
+import { EmployeeModule } from './employee/employee.module';
+import { SalaryModule } from './salary/salary.module';
+import { VehicleModule } from './vehicle/vehicle.module';
+import { Employee } from './employee/entities/employee.entity';
+import { Department } from './department/entities/department.entity';
+import { Salary } from './salary/entities/salary.entity';
 
 @Module({
   imports: [
@@ -12,10 +19,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'postgres',
       password: 'example',
       database: 'nestjs_typeorm',
-      entities: [], //adding entites
+      entities: [Employee, Department, Salary], //adding entites
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([]),//adding entites
+    DepartmentModule,
+    EmployeeModule,
+    SalaryModule,
+    VehicleModule, //adding entites
   ], //import moduule
   controllers: [AppController],
   providers: [AppService],
