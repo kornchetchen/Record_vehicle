@@ -1,3 +1,4 @@
+import { Employee } from 'src/employee/entities/employee.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,10 +6,14 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('departments')
 export class Department {
+  static findByPk(id: number) {
+    throw new Error('Method not implemented.');
+  }
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -38,4 +43,10 @@ export class Department {
 
   @Column({ type: 'varchar', length: 100, nullable: true })
   deleted_by: string;
+
+  @OneToMany(() => Department, (employee) => employee.id)
+  employees: Employee;
+  // constructor(department: Partial<Department>) {
+  //   Object.assign(this, department);
+  // }
 }

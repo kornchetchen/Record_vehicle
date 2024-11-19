@@ -21,7 +21,7 @@ import { Vehicle } from './vehicle/entities/vehicle.entity';
       password: 'Finstable',
       database: 'Findstable_db',
       entities: [ Department], //adding entites Employee, Salary, Vehicle
-      synchronize: false,
+      synchronize: true,
     }),
     DepartmentModule,
     // EmployeeModule,
