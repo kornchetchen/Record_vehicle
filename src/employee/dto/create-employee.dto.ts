@@ -1,1 +1,33 @@
-export class CreateEmployeeDto {}
+import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
+
+export class CreateEmployeeDto {
+  @IsNotEmpty()
+  @IsNumber()
+  id: number;
+  
+  @IsNumber()
+  @IsNotEmpty()
+  department_id: number;
+
+  @IsNotEmpty()
+  @IsString()
+  first_name: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @Length(1, 255)
+  last_name: string;
+
+  @IsOptional()
+  @IsString()
+  @Length(0, 10)
+  phone?: string;
+
+  @IsNotEmpty()
+  @IsEnum(['Entry', 'Support', 'Manager', 'Director', 'Vice President', 'CEO'])
+  job_title: string;
+
+  @IsNotEmpty()
+  @IsEnum(['Active', 'On Leave', 'Terminated', 'On Probation'])
+  status: string;
+}

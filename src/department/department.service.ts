@@ -18,7 +18,6 @@ export class DepartmentService {
   async create(createDepartmentDto: CreateDepartmentDto) {
     const department = this.departmentRepository.create(createDepartmentDto);
     return this.departmentRepository.save(department);
-    // return 'This action adds a new department';
     //create x findall
   }
 
