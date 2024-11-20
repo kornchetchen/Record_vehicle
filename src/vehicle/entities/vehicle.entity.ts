@@ -8,15 +8,17 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
+  OneToOne,
 } from 'typeorm';
 
 @Entity('vehicles')
 export class Vehicle {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @ManyToOne(() => Employee, (employee) => employee.vehicles)
-  @JoinColumn({ name: 'employee_id' })
+  @ManyToOne(() => Employee, (employee) => employee.vehicle)
+  // @JoinColumn({ name: 'employee_id' })
   employee: Employee;
 
   @Column({ type: 'varchar', length: 50 })
@@ -34,19 +36,19 @@ export class Vehicle {
   @Column({ type: 'varchar', length: 20 })
   status: string; // 'Active / Broken / Repair'
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+
+  @CreateDateColumn()
   created_at: Date;
 
-  @UpdateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP',
-  })
+  @UpdateDateColumn()
   updated_at: Date;
 
-  @DeleteDateColumn({ type: 'timestamp', nullable: true })
+  @DeleteDateColumn()
   deleted_at: Date;
 
-  @Column({ type: 'timestamp', nullable: true })
-  deleted_by: Date;
+  @Column({ nullable: true }) 
+  deleted_by: string;
+
+  @OneToMany(() => Employee, (employee) => employee.vehicle)
+  employees: Employee[];
 }

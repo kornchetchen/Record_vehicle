@@ -1,15 +1,21 @@
+import { Salary } from 'src/salary/entities/salary.entity';
+import { Vehicle } from 'src/vehicle/entities/vehicle.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
   PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('employee')
 export class Employee {
-  @PrimaryColumn({ nullable: false })
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column(null)
@@ -37,6 +43,11 @@ export class Employee {
   })
   status: string;
 
+    @OneToOne(() => Salary)
+    @JoinColumn({name:"salary_id"})
+  salary: Salary;
+
+
   @CreateDateColumn()
   created_at: Date;
 
@@ -46,7 +57,9 @@ export class Employee {
   @DeleteDateColumn()
   deleted_at: Date;
 
-  @Column({ type: 'varchar', nullable: true }) 
+  @Column({ nullable: true }) 
   deleted_by: string;
-  vehicles: any;
+
+  @OneToMany(()=> Vehicle , (vehicle)=> vehicle.employee)
+  vehicle: Vehicle[]
 }

@@ -8,10 +8,6 @@ export class CreateSalaryDto {
 
   @IsNotEmpty()
   @IsNumber()
-  employee_id: number;
-
-  @IsNotEmpty()
-  @IsNumber()
   amount: number;
 
   @IsEnum(['CNY', 'USD', 'THB', 'BTC'])
@@ -20,9 +16,11 @@ export class CreateSalaryDto {
   @CreateDateColumn()
   created_at: Date;
 
+  @IsOptional()
   @UpdateDateColumn()
   updated_at: Date;
   
+  @IsOptional()
   @DeleteDateColumn({ nullable: true })
   deleted_at: Date;
   

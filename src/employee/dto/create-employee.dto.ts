@@ -1,10 +1,9 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { IsEnum, IsNotEmpty, isNumber, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreateEmployeeDto {
-  @IsNotEmpty()
   @IsNumber()
-  id: number;
-  
+  employeeId: number;
+
   @IsNumber()
   @IsNotEmpty()
   department_id: number;

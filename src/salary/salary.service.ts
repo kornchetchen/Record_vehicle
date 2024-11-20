@@ -11,10 +11,10 @@ export class SalaryService {
     @InjectRepository(Salary)
     private salaryRepository: Repository<Salary>
   ){}
-  create(createSalaryDto: CreateSalaryDto) {
-    return 'This action adds a new salary';
-    // const salary = this.salaryRepository.create(createSalaryDto);
-    // return await this.salaryRepository.save(salary);
+  async create(createSalaryDto: CreateSalaryDto) {
+    // return 'This action adds a new salary';
+    const salary = this.salaryRepository.create(createSalaryDto);
+    return await this.salaryRepository.save(salary);
   }
 
   findAll() {
@@ -29,7 +29,6 @@ export class SalaryService {
     const update_salary = await this.salaryRepository.update({
       id:id,
     }, {
-      employee_id: updateSalaryDto.employee_id,
       amount: updateSalaryDto.amount,
       currency: updateSalaryDto.currency
     })

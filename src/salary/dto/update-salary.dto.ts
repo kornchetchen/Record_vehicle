@@ -8,10 +8,6 @@ export class SalaryResponseDto {
     @IsNotEmpty()
     @IsNumber()
     id: number;
-
-    @IsNotEmpty()
-    @IsNumber()
-    employee_id: number;
     
     @IsNotEmpty()
     @IsNumber()
