@@ -36,13 +36,6 @@ export class SalaryService {
     // return `This action updates a #${id} salary`;
   }
 
-/*************  ✨ Codeium Command ⭐  *************/
-  /**
-   * Remove a salary by its id
-   * @param id The id of the salary to remove
-   * @returns A message indicating that the salary has been removed
-   */
-/******  60be1746-d49c-4eca-9b69-50eccfd0ed91  *******/
   remove(id: number) {
     return `This action removes a #${id} salary`;
   }
