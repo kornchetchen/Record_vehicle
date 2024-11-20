@@ -20,12 +20,12 @@ import { Vehicle } from './vehicle/entities/vehicle.entity';
       username: 'postgres',
       password: 'Finstable',
       database: 'Findstable_db',
-      entities: [ Department , Employee], //adding entites Employee, Salary, Vehicle
+      entities: [ Department , Employee , Salary], //adding entites Employee, Salary, Vehicle
       synchronize: true,
     }),
     DepartmentModule,
     EmployeeModule,
-    // SalaryModule,
+    SalaryModule,
     // VehicleModule, //adding entites
   ], //import moduule
   controllers: [AppController],

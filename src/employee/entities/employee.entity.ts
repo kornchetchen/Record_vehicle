@@ -46,7 +46,7 @@ export class Employee {
   @DeleteDateColumn()
   deleted_at: Date;
 
-  @Column({ type: 'timestamp', nullable: true })
-  deleted_by: Date;
+  @Column({ type: 'varchar', nullable: true }) 
+  deleted_by: string;
   vehicles: any;
 }
