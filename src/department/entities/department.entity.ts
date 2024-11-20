@@ -26,26 +26,29 @@ export class Department {
   @Column({ type: 'varchar', length: 50, default: 'active' })
   status: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  location: string;
+  // @Column({ type: 'varchar', length: 255, nullable: true })
+  // location: string;
 
-  @CreateDateColumn()
-  created_at: Date;
+  // @CreateDateColumn()
+  // created_at: Date;
 
-  @UpdateDateColumn()
-  updated_at: Date;
+  // @UpdateDateColumn()
+  // updated_at: Date;
 
-  @Column({ type: 'varchar', length: 100, nullable: false })
-  updated_by: string;
+  // @Column({ type: 'varchar', length: 100, nullable: true })
+  // updated_by: string;
 
-  @DeleteDateColumn({ nullable: true })
-  deleted_at: Date;
+  // @DeleteDateColumn({ nullable: true })
+  // deleted_at: Date;
 
-  @Column({ type: 'varchar', length: 100, nullable: true })
-  deleted_by: string;
+  // @Column({ type: 'varchar', length: 100, nullable: true })
+  // deleted_by: string;
 
-  @OneToMany(() => Department, (employee) => employee.id)
-  employees: Employee;
+  // @OneToMany(() => Department, (employee) => employee.id)
+  // employees: Employee;
+
+
+
   // constructor(department: Partial<Department>) {
   //   Object.assign(this, department);
   // }

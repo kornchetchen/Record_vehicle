@@ -22,12 +22,12 @@ export class DepartmentController {
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.departmentService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.departmentService.findOne(+id);
   }
 
