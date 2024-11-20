@@ -27,6 +27,6 @@ export class Salary {
   @DeleteDateColumn({ nullable: true })
   deleted_at: Date;
 
-  @Column({ type: 'varchar', nullable: true}) //nullable: true 
+  @Column({ type: 'varchar', nullable: true}) 
   deleted_by: string;
 }
