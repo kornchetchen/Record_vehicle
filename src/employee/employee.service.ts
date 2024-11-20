@@ -55,7 +55,21 @@ export class EmployeeService {
   }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} employee`;
+  async remove(id: number) {
+    const d = await this.findOne(id);
+    this.employeeRespository.remove(d)
+    
+    try { const d  = await this.findOne(id)
+
+      return { message: 'Employee successfully deleted' };
+    } catch (error) {
+      if (error.message === 'Employee not found') {
+        throw new BadRequestException(error.message);
+      } else {
+        throw new BadRequestException('Something went wrong');
+      }
+
+    }
   }
+
 }

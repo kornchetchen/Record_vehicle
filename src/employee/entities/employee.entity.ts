@@ -30,6 +30,7 @@ export class Employee {
   })
   job_title: string;
 
+  
   @Column({
     type: 'enum',
     enum: ['Active', 'On Leave', 'Terminated', 'On Probation'],

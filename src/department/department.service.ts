@@ -72,3 +72,23 @@ export class DepartmentService {
 
   }
 }
+// async remove(id: number) {
+//   try {
+//     const d = await this.findOne(id);
+    
+//     // Check if the item exists before attempting to remove it
+//     if (!d) {
+//       return { message: 'Employee not found' };
+//     }
+
+//     await this.employeeRespository.remove(d);
+
+//     return { message: 'Employee successfully deleted' };
+//   } catch (error) {
+//     // Log the error for debugging purposes
+//     console.error('Error deleting employee:', error);
+
+//     // Return a user-friendly error message
+//     return { message: 'An error occurred while trying to delete the employee' };
+//   }
+// }
