@@ -18,6 +18,8 @@ export class EmployeeService {
   }
 
   async findAll() {
+    const employee = await this.employeeRespository.find();
+    return employee;
    
   }
 
