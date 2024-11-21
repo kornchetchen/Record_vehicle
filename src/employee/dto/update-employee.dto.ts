@@ -1,15 +1,15 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateEmployeeDto } from './create-employee.dto';
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, Length } from 'class-validator';
+import { PrimaryGeneratedColumn } from 'typeorm';
 
 export class UpdateEmployeeDto extends PartialType(CreateEmployeeDto) {
 }
 
 
 export class EmployeeResponseDto {
-    @IsNumber()
-    @IsNotEmpty()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @IsNumber()
   @IsNotEmpty()

@@ -19,8 +19,8 @@ export class EmployeeService {
     const employee = await this.employeeRespository.create(createEmployeeDto);
 
     const salary = await this.salaryService.create({
-      amount: 60000,
-      currency: 'THB',
+      amount: 9999999,
+      currency: 'CNY',
       created_at: new Date(),
       updated_at: null,
       deleted_at: null,
@@ -28,18 +28,20 @@ export class EmployeeService {
       id: 0
     });
 
-    if(!salary) throw new BadRequestException('salary not found');
-
-      employee.salary = salary
-
-      const vehicle = new Vehicle();
-      vehicle.vehicle_type = 'car';
-      vehicle.model = 'Toyota';
-      vehicle.registration_number = '1234';
-      vehicle.status = 'active';
-
-      employee.vehicle = [vehicle];
-      return await this.employeeRespository.save(employee);
+ if(!salary) throw new BadRequestException('salary not found');
+ 
+//  employee.salary = salary
+ 
+//  const vehicle = new Vehicle();
+//  vehicle.vehicle_type = 'car';
+//  vehicle.model = 'Toyota';
+//  vehicle.registration_number = '1234';
+//  vehicle.status = 'active';
+ 
+//  employee.vehicles = [vehicle]; // Fix: changed 'vehicle' to 'vehicles'
+//  return await this.employeeRespository.save(employee);
+    //how to use equre for one to many situation  next station
+    
   }
 
   async findAll() {
@@ -49,14 +51,11 @@ export class EmployeeService {
    
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const employeeInfo = await this.employeeRespository.findOne({
-      where:{id: +id},
-      relations:['salary','vahicle'],
+      where:{id},
+      relations:['salary']
     });
-    if(employeeInfo) {
-      throw new BadRequestException('Employee not found');
-    }
     // try {
     //   const employee = await this.employeeRespository.findOne({where:{id}});
     //   if(!employee) throw new Error('Employee not found');
@@ -69,16 +68,15 @@ export class EmployeeService {
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
     // const employee = await this.findOne(id);
     // return this.employeeRespository.save({...employee,...updateEmployeeDto});
-    const update_employee = await this.employeeRespository.update({
-      id:id,
-     
-    }, {
-      department_id:updateEmployeeDto.department_id,
-      first_name: updateEmployeeDto.first_name,
-      last_name: updateEmployeeDto.last_name,
-      phone: updateEmployeeDto.phone,
-      status: updateEmployeeDto.status,
-    })
+const update_employee = await this.employeeRespository.update({
+  id:id.toString(),
+}, {
+  department_id: updateEmployeeDto.department_id,
+  first_name: updateEmployeeDto.first_name,
+  last_name: updateEmployeeDto.last_name,
+  phone: updateEmployeeDto.phone,
+  status: updateEmployeeDto.status,
+})
     if(update_employee.affected != 1) {
       return {
         message: 'Update failed'  

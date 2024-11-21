@@ -1,4 +1,3 @@
-import { Employee } from 'src/employee/entities/employee.entity';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 
@@ -27,10 +26,6 @@ export class Salary {
   @DeleteDateColumn({ nullable: true })
   @Column({nullable:true})
   deleted_at: Date;
-
-  // @One(() => Employee, (employee) => employee.salary)
-  // @JoinColumn({ name: 'employee_id' })
-  // employee: Employee;
 
   @Column({ nullable: true}) 
   deleted_by: string;

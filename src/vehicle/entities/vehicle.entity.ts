@@ -14,11 +14,11 @@ import {
 
 @Entity('vehicles')
 export class Vehicle {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
-
-  @ManyToOne(() => Employee, (employee) => employee.vehicle)
-  // @JoinColumn({ name: 'employee_id' })
+  
+  @ManyToOne(() => Employee, (employee) => employee.vehicles)
+  @JoinColumn({ name: 'employee_id' })
   employee: Employee;
 
   @Column({ type: 'varchar', length: 50 })
@@ -36,7 +36,6 @@ export class Vehicle {
   @Column({ type: 'varchar', length: 20 })
   status: string; // 'Active / Broken / Repair'
 
-
   @CreateDateColumn()
   created_at: Date;
 
@@ -49,6 +48,4 @@ export class Vehicle {
   @Column({ nullable: true }) 
   deleted_by: string;
 
-  @ManyToOne(() => Employee, (employee) => employee.vehicle)
-  employees: Employee[];
 }

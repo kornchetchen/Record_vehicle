@@ -26,8 +26,12 @@ export class VehicleService {
   findOne(id: number) {
     const vehicle = this.vehicleRepository.findOne({
       where: {id:+id},
-      relations:['employee']
-    })
+      relations:['employee','vehicle']
+    });
+    if (!vehicle) {
+      throw new Error('Vehicle not found');
+    }
+    return vehicle;
   }
 
   async update(id: number, updateVehicleDto: UpdateVehicleDto) {

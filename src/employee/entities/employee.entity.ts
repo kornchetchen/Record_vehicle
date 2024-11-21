@@ -16,7 +16,7 @@ import {
 @Entity('employee')
 export class Employee {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column(null)
   department_id: number;
@@ -43,10 +43,9 @@ export class Employee {
   })
   status: string;
 
-    @OneToOne(() => Salary)
-    @JoinColumn({name:"salary_id"})
+  @OneToOne(() => Salary)
+  @JoinColumn({name:"salary_id"})
   salary: Salary;
-
 
   @CreateDateColumn()
   created_at: Date;
@@ -60,6 +59,7 @@ export class Employee {
   @Column({ nullable: true }) 
   deleted_by: string;
 
-  @OneToMany(()=> Vehicle , (vehicle)=> vehicle.employee)
-  vehicle: Vehicle[]
+  @OneToMany(() => Vehicle, (vehicle) => vehicle.employee)
+  vehicles: Vehicle[];
+
 }

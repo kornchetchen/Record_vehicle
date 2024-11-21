@@ -6,8 +6,7 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column, CreateDa
 @Entity('vehicles')
 
 export class CreateVehicleDto { @PrimaryGeneratedColumn()
-    @IsNotEmpty()
-    @IsNumber()
+    @PrimaryGeneratedColumn('uuid')
     id: number;
 
     @IsNotEmpty()
