@@ -5,16 +5,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { SalaryService } from 'src/salary/salary.service';
 import { Repository } from 'typeorm';
 import { Vehicle } from './entities/vehicle.entity';
+import { Employee } from 'src/employee/entities/employee.entity';
 
 @Injectable()
 export class VehicleService {
-  constructor(
+  constructor (
     @InjectRepository(Vehicle)
-  private  vehicleRepository: Repository<Vehicle>,
-  private readonly salaryService: SalaryService
-  )
-  create(createVehicleDto: CreateVehicleDto) {
-    return 'This action adds a new vehicle';
+    private vehicleRepository: Repository<Vehicle>,
+  ){}
+
+  async create(createVehicleDto: CreateVehicleDto) {
+    const vehicle = this.vehicleRepository.create(createVehicleDto);
+    return await this.vehicleRepository.save(vehicle);
   }
 
   findAll() {
@@ -22,10 +24,21 @@ export class VehicleService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} vehicle`;
+    const vehicle = this.vehicleRepository.findOne({
+      where: {id:+id},
+      relations:['employee']
+    })
   }
 
-  update(id: number, updateVehicleDto: UpdateVehicleDto) {
+  async update(id: number, updateVehicleDto: UpdateVehicleDto) {
+    await this.vehicleRepository.update({
+      id:id,
+    }, {
+      vehicle_type: updateVehicleDto.vehicle_type,
+      model: updateVehicleDto.model,
+      registration_number: updateVehicleDto.registration_number,
+      status: updateVehicleDto.status
+    });
     return `This action updates a #${id} vehicle`;
   }
 

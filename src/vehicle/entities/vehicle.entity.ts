@@ -49,6 +49,6 @@ export class Vehicle {
   @Column({ nullable: true }) 
   deleted_by: string;
 
-  @OneToMany(() => Employee, (employee) => employee.vehicle)
+  @ManyToOne(() => Employee, (employee) => employee.vehicle)
   employees: Employee[];
 }

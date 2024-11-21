@@ -29,9 +29,8 @@ export class UpdateVehicleDto extends PartialType(CreateVehicleDto) {
     @IsEnum(['Active','Broken','Repaire'])
     status: string;
 
-    @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+    created_at: Date;
     updated_at: Date;
-
-    @DeleteDateColumn({ type: 'timestamp', nullable: true })
     deleted_at: Date;
+    deleted_by: string;
 }

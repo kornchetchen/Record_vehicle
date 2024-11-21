@@ -12,7 +12,6 @@ export class SalaryService {
     private salaryRepository: Repository<Salary>
   ){}
   async create(createSalaryDto: CreateSalaryDto) {
-    // return 'This action adds a new salary';
     const salary = this.salaryRepository.create(createSalaryDto);
     return await this.salaryRepository.save(salary);
   }
@@ -32,7 +31,7 @@ export class SalaryService {
       amount: updateSalaryDto.amount,
       currency: updateSalaryDto.currency
     })
-    // return `This action updates a #${id} salary`;
+  
   }
 
   remove(id: number) {

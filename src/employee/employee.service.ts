@@ -5,6 +5,7 @@ import { Employee } from './entities/employee.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SalaryService } from 'src/salary/salary.service';
+import { Vehicle } from 'src/vehicle/entities/vehicle.entity';
 
 @Injectable()
 export class EmployeeService {
@@ -18,27 +19,27 @@ export class EmployeeService {
     const employee = await this.employeeRespository.create(createEmployeeDto);
 
     const salary = await this.salaryService.create({
-      id:2,
-      amount:40000,
+      amount: 60000,
       currency: 'THB',
       created_at: new Date(),
-      updated_at:null,
-      deleted_at:null
+      updated_at: null,
+      deleted_at: null,
+      deleted_by: null,
+      id: 0
+    });
 
-    })
-    // salary vahical
+    if(!salary) throw new BadRequestException('salary not found');
 
-    if(!salary) throw new BadRequestException('salary not found')
+      employee.salary = salary
 
-      console.log(
-        {salary}
-      );
-      
+      const vehicle = new Vehicle();
+      vehicle.vehicle_type = 'car';
+      vehicle.model = 'Toyota';
+      vehicle.registration_number = '1234';
+      vehicle.status = 'active';
 
-    employee.salary = salary
-    //how to use equre for one to many situation  next station
-    return await this.employeeRespository.save(employee);
-    
+      employee.vehicle = [vehicle];
+      return await this.employeeRespository.save(employee);
   }
 
   async findAll() {
@@ -51,8 +52,11 @@ export class EmployeeService {
   async findOne(id: number) {
     const employeeInfo = await this.employeeRespository.findOne({
       where:{id: +id},
-      relations:['salary']
+      relations:['salary','vahicle'],
     });
+    if(employeeInfo) {
+      throw new BadRequestException('Employee not found');
+    }
     // try {
     //   const employee = await this.employeeRespository.findOne({where:{id}});
     //   if(!employee) throw new Error('Employee not found');

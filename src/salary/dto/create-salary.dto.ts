@@ -13,18 +13,10 @@ export class CreateSalaryDto {
   @IsEnum(['CNY', 'USD', 'THB', 'BTC'])
   currency: 'CNY' | 'USD' | 'THB' | 'BTC';
 
-  @CreateDateColumn()
   created_at: Date;
-
-  @IsOptional()
-  @UpdateDateColumn()
   updated_at: Date;
-  
-  @IsOptional()
-  @DeleteDateColumn({ nullable: true })
   deleted_at: Date;
   
-  @IsOptional()
   @IsString()
-  deleted_by?: string;
+  deleted_by: string;
 }

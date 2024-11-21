@@ -6,10 +6,6 @@ import { DepartmentModule } from './department/department.module';
 import { EmployeeModule } from './employee/employee.module';
 import { SalaryModule } from './salary/salary.module';
 import { VehicleModule } from './vehicle/vehicle.module';
-import { Employee } from './employee/entities/employee.entity';
-import { Department } from './department/entities/department.entity';
-import { Salary } from './salary/entities/salary.entity';
-import { Vehicle } from './vehicle/entities/vehicle.entity';
 
 @Module({
   imports: [
@@ -20,14 +16,14 @@ import { Vehicle } from './vehicle/entities/vehicle.entity';
       username: 'postgres',
       password: 'Finstable',
       database: 'Findstable_db',
-      entities: [ 'dist/**/*.entity{.ts,.js}'], //adding entites Employee, Salary, Vehicle
+      entities: [ 'dist/**/*.entity{.ts,.js}'], //this craete for auto adding entities
       synchronize: true,
     }),
     DepartmentModule,
     EmployeeModule,
     SalaryModule,
-    VehicleModule, //adding entites
-  ], //import moduule
+    VehicleModule,
+  ], 
   controllers: [AppController],
   providers: [AppService],
 })

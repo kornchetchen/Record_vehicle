@@ -1,6 +1,7 @@
-import { IsEnum, IsNotEmpty, isNumber, IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { IsEnum, IsNotEmpty, isNumber, IsNumber, IsOptional, IsString, IsUUID, Length } from 'class-validator';
 
 export class CreateEmployeeDto {
+
   @IsNumber()
   employeeId: number;
 
@@ -29,4 +30,9 @@ export class CreateEmployeeDto {
   @IsNotEmpty()
   @IsEnum(['Active', 'On Leave', 'Terminated', 'On Probation'])
   status: string;
+
+  created_at: Date;
+  updated_at: Date;
+  deleted_at: Date;
+  deleted_by: string;
 }

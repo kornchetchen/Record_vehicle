@@ -9,12 +9,11 @@ import {
 export class CreateDepartmentDto {
   @IsNotEmpty()
   @IsString()
-  // @Length(1, 255)
+  @Length(1, 255)
   department_name: string;
 
   @IsNotEmpty()
   @IsString()
-  // @Length(1, 50)
   department_code: string;
 
   @IsString()
@@ -25,16 +24,8 @@ export class CreateDepartmentDto {
   @IsOptional()
   location?: string;
 
-  // @IsDateString()
-  // created_at: Date;
-
-  // @IsDateString()
-  // updated_at: Date;
-
-  // @IsDateString()
-  // deleted_at: Date;
-
-  // @IsDateString()
-  // @IsNotEmpty()
-  // deleted_by: string;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at: Date;
+  deleted_by: string;
 }

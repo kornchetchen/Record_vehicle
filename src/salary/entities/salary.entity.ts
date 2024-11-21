@@ -32,6 +32,6 @@ export class Salary {
   // @JoinColumn({ name: 'employee_id' })
   // employee: Employee;
 
-  @Column({ type: 'varchar', nullable: true}) 
+  @Column({ nullable: true}) 
   deleted_by: string;
 }

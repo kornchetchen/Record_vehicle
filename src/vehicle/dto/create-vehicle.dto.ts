@@ -35,15 +35,8 @@ export class CreateVehicleDto { @PrimaryGeneratedColumn()
     @IsEnum(['Active','Broken','Repaire'])
     status: string;
 
-    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
-
-    @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updated_at: Date;
-
-    @DeleteDateColumn({ type: 'timestamp', nullable: true })
     deleted_at: Date;
-
-    @Column({ type: 'timestamp', nullable: true })
-    deleted_by: string;}
-
+    deleted_by: string;
+    }
