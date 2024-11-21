@@ -4,44 +4,18 @@ import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { Employee } from './entities/employee.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SalaryService } from 'src/salary/salary.service';
-import { Vehicle } from 'src/vehicle/entities/vehicle.entity';
 
 @Injectable()
 export class EmployeeService {
   constructor(
     @InjectRepository(Employee)
     private  employeeRespository : Repository<Employee>,
-    private  readonly salaryService: SalaryService,
-
+    // private readonly salaryService:SalaryService,
+    // private readonly vehicleService:VehicleService
   ){}
   async create(createEmployeeDto: CreateEmployeeDto) {
-    const employee = await this.employeeRespository.create(createEmployeeDto);
-
-    const salary = await this.salaryService.create({
-      amount: 9999999,
-      currency: 'CNY',
-      created_at: new Date(),
-      updated_at: null,
-      deleted_at: null,
-      deleted_by: null,
-      id: 0
-    });
-
- if(!salary) throw new BadRequestException('salary not found');
- 
-//  employee.salary = salary
- 
-//  const vehicle = new Vehicle();
-//  vehicle.vehicle_type = 'car';
-//  vehicle.model = 'Toyota';
-//  vehicle.registration_number = '1234';
-//  vehicle.status = 'active';
- 
-//  employee.vehicles = [vehicle]; // Fix: changed 'vehicle' to 'vehicles'
-//  return await this.employeeRespository.save(employee);
-    //how to use equre for one to many situation  next station
-    
+    const employee = this.employeeRespository.create(createEmployeeDto);
+    return await this.employeeRespository.save(employee);
   }
 
   async findAll() {
@@ -57,9 +31,8 @@ export class EmployeeService {
       relations:['salary','vehicles']
     });
     try {
-      const employee = await this.employeeRespository.findOne({where:{id}});
-      if(!employee) throw new Error('Employee not found');
-      return employee;
+      if(!employeeInfo) throw new Error('Employee not found');
+      return employeeInfo;
     } catch (error) {
       throw new BadRequestException(error.message);
     }

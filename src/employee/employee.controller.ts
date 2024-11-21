@@ -27,7 +27,14 @@ export class EmployeeController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.employeeService.findOne(id);
+{
+      const employee = await this.employeeService.findOne(id);
+      if (!employee) {
+        throw new Error('Employee not found');
+      }
+      return employee;
+    }
+    // return this.employeeService.findOne(id);
   }
 
   @Patch(':id')

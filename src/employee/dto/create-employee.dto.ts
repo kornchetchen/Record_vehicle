@@ -1,7 +1,10 @@
 import { IsEnum, IsNotEmpty, isNumber, IsNumber, IsOptional, IsString, IsUUID, Length } from 'class-validator';
+import { PrimaryGeneratedColumn } from 'typeorm/decorator/columns/PrimaryGeneratedColumn';
 
 export class CreateEmployeeDto {
-
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+  
   @IsNumber()
   employeeId: number;
 

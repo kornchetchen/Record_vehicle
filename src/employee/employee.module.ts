@@ -3,12 +3,13 @@ import { EmployeeService } from './employee.service';
 import { EmployeeController } from './employee.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Employee } from './entities/employee.entity';
-import { SalaryModule } from 'src/salary/salary.module';
+import { VehicleModule } from 'src/vehicle/vehicle.module';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Employee]),SalaryModule],
+  imports:[TypeOrmModule.forFeature([Employee,VehicleModule])],
   controllers: [EmployeeController],
   providers: [EmployeeService],
+  exports:[EmployeeService]
 })
 export class EmployeeModule {}
 

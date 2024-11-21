@@ -58,8 +58,10 @@ export class Employee {
 
   @Column({ nullable: true }) 
   deleted_by: string;
+  vehicles: any;
 
-  @OneToMany(() => Vehicle, (vehicle) => vehicle.employee)
-  vehicles: Vehicle[];
+  @OneToMany(() => Vehicle, vehicle => vehicle.employee)
+  @JoinColumn({name:"vehicle_id"})
+  employee_vehicles: Vehicle;
 
 }
