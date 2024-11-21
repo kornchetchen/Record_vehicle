@@ -54,15 +54,15 @@ export class EmployeeService {
   async findOne(id: string) {
     const employeeInfo = await this.employeeRespository.findOne({
       where:{id},
-      relations:['salary']
+      relations:['salary','vehicles']
     });
-    // try {
-    //   const employee = await this.employeeRespository.findOne({where:{id}});
-    //   if(!employee) throw new Error('Employee not found');
-    //   return employee;
-    // } catch (error) {
-    //   throw new BadRequestException(error.message);
-    // }
+    try {
+      const employee = await this.employeeRespository.findOne({where:{id}});
+      if(!employee) throw new Error('Employee not found');
+      return employee;
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
