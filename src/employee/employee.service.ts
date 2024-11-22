@@ -15,20 +15,6 @@ import { create } from 'domain';
     ){}
 
 
-    // interface IcreateVehicle {
-    //   vehicle_id: string;
-    //   vehicle_type: string;
-    //   employee: Employee;
-    //   model: string;
-    //   registration_number: string;
-    //   fuel_type: string;
-    //   status: string;
-    //   created_at: Date;
-    //   updated_at: Date;
-    //   deleted_at: Date;
-    //   deleted_by: string;
-    // }
-
     async create(createEmployeeDto: CreateEmployeeDto) {
       const employee = this.employeeRespository.create(createEmployeeDto);
       return await this.employeeRespository.save(employee);
@@ -36,9 +22,6 @@ import { create } from 'domain';
 
     async findAll() {
       return await this.employeeRespository.find();
-      // const employee = await this.employeeRespository.find();
-      // return employee;
-    
     }
 
     async findOne(id: string) {

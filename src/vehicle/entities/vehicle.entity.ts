@@ -36,7 +36,7 @@ export class Vehicle {
   status: string; // 'Active / Broken / Repair'
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
@@ -47,5 +47,8 @@ export class Vehicle {
   @Column({ nullable: true }) 
   deleted_by: string;
   
-
+//create at x update at x delete :defult value ....
+//?  ในบางครั้ง สร้าง เรคคอดนี้ ไม่ต้องการcreate update delete  ไม่ควรมี 
+// ไม่ควรให้ค่าดังกล่าวมีก่อนมา
+// คิดด้วยตัวเอง
 }

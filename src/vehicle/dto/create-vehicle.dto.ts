@@ -5,7 +5,8 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column, CreateDa
 
 @Entity('vehicles')
 
-export class CreateVehicleDto { @PrimaryGeneratedColumn()
+export class CreateVehicleDto {
+  @PrimaryGeneratedColumn()
     @PrimaryGeneratedColumn('uuid')
     vehicle_id: number;
 
@@ -35,7 +36,7 @@ export class CreateVehicleDto { @PrimaryGeneratedColumn()
     status: string;
 
     created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-    deleted_by: string;
+    updated_at?: Date;
+    deleted_at?: Date;
+    deleted_by?: string;
     }

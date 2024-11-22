@@ -6,17 +6,18 @@ import { Repository } from 'typeorm';
 import { Vehicle } from './entities/vehicle.entity';
 
 import { Employee } from 'src/employee/entities/employee.entity';
-interface IcreateVehicle {
+ interface IcreateVehicle {
   vehicle_type: string;
   employee: Employee;
   model: string;
   registration_number: string;
   fuel_type: string;
   status: string;
-  created_at: Date;
-  updated_at: Date;
-  deleted_at: Date;
-  deleted_by: string;
+  created_at:Date ;
+  updated_at?:Date | null ;
+  deleted_at?:Date | null;
+  deleted_by?: string | null;
+  // [key:string] : string | Date | null | Employee
 }
 @Injectable()
 export class VehicleService {
@@ -31,7 +32,7 @@ export class VehicleService {
   async create(createVehicleDto: CreateVehicleDto) {
 
 
-    const employee = await this.employeeRepository.findOne({
+    const employee = await this.employeeRepository.findOne({ //this is fetch employee code 
       where :{employee_id: createVehicleDto.employee_id}});
       console.log(employee)
     // const employee = await this.employeeService.findOne(createVehicleDto.employee_id.toString());
@@ -39,18 +40,25 @@ export class VehicleService {
       throw new NotFoundException('Employee not found');
     }
       const vehicleInfo:IcreateVehicle = {
-      
-      vehicle_type: createVehicleDto.vehicle_type,
-      employee: employee,
-      model: createVehicleDto.model,
-      registration_number: createVehicleDto.registration_number,
-      fuel_type: createVehicleDto.fuel_type,
-      status: createVehicleDto.status,
-      created_at: new Date(),
-      updated_at: new Date(),
-      deleted_at: new Date(),
-      deleted_by: 'chen',
-    }
+        employee:employee,
+        model: createVehicleDto.model,
+        vehicle_type: createVehicleDto.vehicle_type,
+        registration_number: createVehicleDto.registration_number,
+        fuel_type: createVehicleDto.fuel_type,
+        status: createVehicleDto.status, // assaign status  // enum before assian to status***
+        created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
+        deleted_by: null,
+      }
+
+
+    //4.for soft del this value will insert only deltet
+    //3.find this solution don't insert this up x del in this interface canbe in or not in these 
+    //2.depend on interface using which function calling senario [OK]
+    //1. Logic FlowChart [OK]
+   
+
 
 
     const vehicle = this.vehicleRepository.create(vehicleInfo);
