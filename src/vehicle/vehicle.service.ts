@@ -32,7 +32,7 @@ export class VehicleService {
   async create(createVehicleDto: CreateVehicleDto) {
 
 
-    const employee = await this.employeeRepository.findOne({ //this is fetch employee code 
+    const employee = await this.employeeRepository.findOne({  //this is fetch employee code 
       where :{employee_id: createVehicleDto.employee_id}});
       console.log(employee)
     // const employee = await this.employeeService.findOne(createVehicleDto.employee_id.toString());
@@ -41,7 +41,7 @@ export class VehicleService {
     }
       const vehicleInfo:IcreateVehicle = {
         employee:employee,
-        model: createVehicleDto.model,
+        model: createVehicleDto.model,  //Why DTO for Typecheckign for sure about cathch type mismatches
         vehicle_type: createVehicleDto.vehicle_type,
         registration_number: createVehicleDto.registration_number,
         fuel_type: createVehicleDto.fuel_type,
@@ -54,7 +54,7 @@ export class VehicleService {
 
 
     //4.for soft del this value will insert only deltet
-    //3.find this solution don't insert this up x del in this interface canbe in or not in these 
+    //3.find this solution don't insert this update and delete_at deleted_by in this interface canbe in or not in these 
     //2.depend on interface using which function calling senario [OK]
     //1. Logic FlowChart [OK]
    

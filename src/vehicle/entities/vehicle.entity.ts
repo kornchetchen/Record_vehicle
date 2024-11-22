@@ -35,16 +35,16 @@ export class Vehicle {
   @Column({ type: 'varchar', length: 20 })
   status: string; // 'Active / Broken / Repair'
 
-  @CreateDateColumn()
+  @CreateDateColumn({name:'created_at' , type:'timestamp',nullable: false })
   created_at?: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name:'updated_at',nullable: true })
   updated_at: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ name:'deleted_at',nullable: true })
   deleted_at: Date;
 
-  @Column({ nullable: true }) 
+  @Column({ name:'deleted_by',nullable: true }) 
   deleted_by: string;
   
 //create at x update at x delete :defult value ....
