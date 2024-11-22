@@ -26,7 +26,7 @@ export class SalaryService {
 
   async update(id: number, updateSalaryDto: UpdateSalaryDto) {
     const update_salary = await this.salaryRepository.update({
-      id:id,
+      salary_id:id,
     }, {
       amount: updateSalaryDto.amount,
       currency: updateSalaryDto.currency

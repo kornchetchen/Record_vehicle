@@ -14,11 +14,10 @@ import {
 
 @Entity('vehicles')
 export class Vehicle {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  vehicle_id: number;
   
   @ManyToOne(() => Employee, (employee) => employee.vehicles)
-  @JoinColumn({ name: 'employee_id' })
   employee: Employee;
 
   @Column({ type: 'varchar', length: 50 })
@@ -47,5 +46,6 @@ export class Vehicle {
 
   @Column({ nullable: true }) 
   deleted_by: string;
+  
 
 }

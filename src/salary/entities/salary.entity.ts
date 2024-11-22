@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 @Entity('salary')
 export class Salary {
   @PrimaryGeneratedColumn()
-  id: number;
+  salary_id: number;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;

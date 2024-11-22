@@ -10,7 +10,7 @@ export class UpdateVehicleDto extends PartialType(CreateVehicleDto) {
 
     @IsNotEmpty()
     @IsNumber()
-    employee_id: number;
+    employee_id: string;
 
     @Column({ type: 'enum', })
     @IsEnum(['Motorbike' ,'Car' , 'Electric car' , 'Bicycle'])

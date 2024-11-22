@@ -7,11 +7,11 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column, CreateDa
 
 export class CreateVehicleDto { @PrimaryGeneratedColumn()
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    vehicle_id: number;
 
     @IsNotEmpty()
     @IsNumber()
-    employee_id: number;
+    employee_id: string;
 
     @Column({ type: 'enum', })
     @IsEnum(['Motorbike' ,'Car' , 'Electric car' , 'Bicycle'])
